@@ -1,0 +1,247 @@
+/* Main content area */
+.main {
+  flex: 5;
+  padding: 2rem;
+  position: relative;
+  background: #6a5acd;
+  background: -webkit-linear-gradient(-90deg, #6a5acd, #fffbaf);
+  margin: 0;
+  border: 0;
+}
+
+/* Navigation header */
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 50px;
+  padding: 100px;
+  color: black;
+  font-weight: 500;
+  letter-spacing: 20px;
+  font-family: 'Dancing Script', cursive;
+  margin-left: 30px;
+}
+
+/* Container for main content */
+.main-container {
+  max-width: 900px;
+  margin: auto;
+}
+
+/* Greeting section */
+.main .greet {
+  margin: 20px 0px;
+  font-size: 20px;
+  color: #fffefe;
+  font-weight: 200;
+  padding: 0px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Card container */
+.main .cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 10px;
+  padding: 10px;
+}
+
+/* Individual card styles */
+.card {
+  height: 100px;
+  width: 200px;
+  padding: 10px;
+  background-color: #ffffff;
+  border-radius: 20px;
+  position: relative;
+  cursor: pointer;
+}
+
+.card:hover {
+  background-color: #72746f;
+}
+
+.stars {
+  color: #ffd700;
+  font-size: 0.7rem;
+  margin-bottom: 1px;
+}
+
+.main .card img {
+  width: 35px;
+  padding: 1px;
+  position: absolute;
+  background-color: black;
+  border-radius: 20px;
+  bottom: 2px;
+  right: 5px;
+  top: 1px;
+}
+
+.main .card h4 {
+  color: black;
+  font-size: 13px;
+}
+
+.main .card p {
+  color: black;
+  font-size: 12px;
+}
+
+/* Footer/search box area */
+.main-bottom {
+  position: inherit;
+  bottom: 0;
+  width: 100%;
+  max-width: 900px;
+  padding: 10px;
+  border-radius: 15px;
+}
+
+/* Search box styles */
+.search-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: rgb(0, 0, 0);
+  padding: 5px 20px;
+  border-radius: 20px;
+}
+
+.search-box img {
+  height: 20px;
+  width: 20px;
+  cursor: pointer;
+}
+
+.search-box input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  padding: 20px;
+  font-size: 18px;
+  font-weight: 300;
+  -webkit-text-fill-color: #f6f7f8;
+  caret-color: #ffffff;
+  color: #ffffff;
+  background-color: #000000;
+}
+
+.search-box div {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Result section */
+.result {
+  padding: 0px 5%;
+  max-height: 60vh;
+  overflow-y: auto;
+  margin: 15px 15px;
+  background-color: #000000;
+  border-radius: 10px;
+}
+
+.result-title {
+  margin: 30px 0px;
+  font-size: large;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  color: #f6f7f8;
+}
+
+.result img {
+  width: 50px;
+}
+
+.result-data {
+  display: flex;
+  align-items: start;
+  gap: 20px;
+  color: #f6f7f8;
+}
+
+/* Loader animation */
+.loader {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  animation: loader 3s infinite linear;
+}
+
+.loader hr {
+  border-radius: 20px;
+  border: none;
+  background-color: #f6f7f8;
+  background: -webkit-linear-gradient(-90deg, #6a5acd, #fffbaf);
+  background-size: 800px 50px;
+  height: 20px;
+}
+
+/* Loader keyframes */
+@keyframes loader {
+  0% {
+    background-position: -800px 0px;
+  }
+  100% {
+    background-position: 800px 0px;
+  }
+}
+
+.result-data p {
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 1.8;
+}
+
+/* Styles for mobile devices (up to 768px) */
+@media (max-width: 768px) {
+  .main {
+    flex-direction: column;
+    padding: 1rem;
+    min-height: 15vh;
+  }
+
+  .cards {
+    grid-template-columns: 1fr; 
+    padding: 0;
+  }
+
+  .nav {
+    font-size: 24px;
+    padding: 20px;
+    letter-spacing: 10px;
+  }
+
+  .main-bottom {
+    padding: 5px;
+  }
+}
+
+/* Styles for larger screens (1024px and above) */
+@media (min-width: 1024px) {
+  .main {
+    padding: 2rem;
+    min-height: 20vh;
+  }
+
+  .nav {
+    font-size: 50px;
+    padding: 100px;
+  }
+
+  .cards {
+    grid-template-columns: repeat(3, 1fr); 
+  }
+
+  .main-bottom {
+    padding: 10px;
+  }
+}

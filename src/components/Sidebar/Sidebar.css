@@ -1,0 +1,81 @@
+@import "https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap";
+
+/* Sidebar */
+.sidebar {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: #5BB8E6;
+  background: -webkit-linear-gradient(-90deg, #6a5acd, #fffbaf);
+  padding: 10px;
+}
+
+.sidebar .menu {
+  margin: 30px;
+  display: flex;
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+}
+
+.ai-logo {
+  width: 100px;
+  height: 100px;
+  padding: 10px;
+}
+
+.sidebar .new-chat {
+  background: transparent;
+  color: rgb(0, 0, 0);
+  cursor: pointer;
+  margin: 30px;
+  display: flex;
+  width: 30px;
+  height: 30px;
+}
+
+.sidebar .recent {
+  display: flex;
+  flex-direction: column;
+  animation: fadeIn 1.5s;
+  background-color: transparent;
+  font-size: small;
+  cursor: pointer;
+  padding-left: 30px;
+}
+
+.sidebar .recent-title {
+  margin-top: 30px;
+  margin-bottom: 20px;
+}
+
+.sidebar .recent-entry {
+  display: flex;
+  align-items: start;
+  gap: 10px;
+  padding: 10px;
+  border-radius: 40px;
+  color: #000000;
+  cursor: pointer;
+}
+
+.sidebar .recent-entry:hover {
+  background-color: #72746f;
+}
+
+/* Responsive adjustments for the sidebar */
+@media (max-width: 600px) {
+  .sidebar {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    min-height: 10vh;
+    padding: 10px;
+  }
+
+  .sidebar .recent {
+    flex-direction: row;
+    padding-left: 10px;
+  }
+}
