@@ -34,7 +34,7 @@ const Main = () => {
             <div className="cards">
               <div className="card">
                 <img src={assets.use1} alt="User Image" />
-                <h4>Dhilip Nagarajan 😎</h4>
+                <h4>Sachin 😎</h4>
                 <div className="stars">★★★★☆</div>
                 <p>Loved the smooth performance and responsiveness; it’s a top-notch AI tool.</p>
               </div>
@@ -45,7 +45,7 @@ const Main = () => {
                 <img src={assets.use2} alt="" />
               </div>
               <div className="card">
-                <h4>Vishnu 😜</h4>
+                <h4>Akash 😜</h4>
                 <div className="stars">★★★★</div>
                 <p>The design is clean and professional, making it a pleasure to use every day.</p>
                 <img src={assets.use3} alt="" />

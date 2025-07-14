@@ -1,10 +1,11 @@
 import { createContext, useState } from "react";
 import PropTypes from "prop-types";
 import runChat from "../config/gemini";
+import { marked } from "marked";
 
 export const Context = createContext();
 
-const ContextProvider = ( props ) => {
+const ContextProvider = (props) => {
   const [input, setInput] = useState("");
   const [recentPrompt, setRecentPrompt] = useState("");
   const [prevPrompts, setPrevPrompts] = useState([]);
@@ -12,54 +13,48 @@ const ContextProvider = ( props ) => {
   const [loading, setLoading] = useState(false);
   const [resultData, setResultData] = useState("");
 
-  const delayPara = (index, nextWord) => {
-    setTimeout(function () {
-      setResultData((prev) => prev + nextWord);
-    }, 75 * index);
-  };
-  const newChat =() =>{
+  const newChat = () => {
     setLoading(false);
     setShowResult(false);
+    setResultData("");
+    setInput("");
   };
 
+  const delayTyping = (words, delay = 25) => {
+    setResultData(""); // Clear before starting
+    words.forEach((word, index) => {
+      setTimeout(() => {
+        setResultData((prev) => prev + word);
+      }, delay * index);
+    });
+  };
 
-  // eslint-disable-next-line no-unused-vars
   const onSent = async (prompt) => {
-
     setResultData("");
     setLoading(true);
     setShowResult(true);
+
     let response;
-      if (prompt !== undefined) {
+
+    if (prompt !== undefined) {
       response = await runChat(prompt);
       setRecentPrompt(prompt);
-      }
-      else
-      {
-         setPrevPrompts(prev=>[ ... prev, input]);
-         setRecentPrompt(input);
-         response = await runChat(input);
-     }
-    let responseArray = response.split("**");
-    let newResponse="" ;
-    for(let i =0 ; i < responseArray.length; i++)
-   {
-         if (i === 0 || i%2 !== 1) {
-          newResponse += responseArray[i];
-         }
-         else{
-              newResponse += "<b>"+responseArray[i]+"</b>";
-         }
-   }
-         let newResponse2 = newResponse.split("*").join("</br>");
-         let newResponseArray = newResponse2.split(" ");
-           for(let i=0; i<newResponseArray.length;i++)
-               {
-                const nextWord = newResponseArray[i];
-                delayPara(i,nextWord+" ");
-               }
-         setLoading(false);
-         setInput("");
+    } else {
+      setPrevPrompts((prev) => [...prev, input]);
+      setRecentPrompt(input);
+      response = await runChat(input);
+    }
+
+    // ✅ Convert to HTML using marked
+    const htmlResponse = marked.parse(response);
+
+    // ✅ Break HTML into small chunks for typing effect
+    const chunkedWords = htmlResponse.match(/(<[^>]+>|[^<>\s]+|\s+)/g); // Tags, words, spaces
+
+    delayTyping(chunkedWords, 20); // Type each chunk with delay
+
+    setLoading(false);
+    setInput("");
   };
 
   const contextValue = {
@@ -73,7 +68,7 @@ const ContextProvider = ( props ) => {
     resultData,
     input,
     setInput,
-    newChat
+    newChat,
   };
 
   return <Context.Provider value={contextValue}>{props.children}</Context.Provider>;
